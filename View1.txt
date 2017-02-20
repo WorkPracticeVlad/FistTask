@@ -1,0 +1,4 @@
+select Hosts.Host , COUNT(PageUrls.Id) as TotalNubmerOfPages from PageUrls
+inner join Hosts on
+[dbo].[Hosts].Id = PageUrls.Fk_Hosts_Id
+group by Hosts.Host;

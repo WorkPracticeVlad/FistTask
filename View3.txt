@@ -1,0 +1,7 @@
+select h.Host, p.Url, p.LoadTime 
+ from [dbo].[Hosts] as h 
+ cross apply 
+     (select top 10 PageUrls.Url, PageUrls.LoadTime
+      from PageUrls 
+      where PageUrls.Fk_Hosts_Id = h.Id and PageUrls.LoadTime is not null
+      order by PageUrls.LoadTime desc) as p

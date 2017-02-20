@@ -1,0 +1,41 @@
+CREATE TABLE Hosts
+(
+Id int not null PRIMARY KEY,
+Host nvarchar(max) NOT NULL 
+)
+CREATE TABLE PageUrls
+(
+Id int IDENTITY(1,1) PRIMARY KEY,
+Url nvarchar(max) NOT NULL,
+LoadTime INTEGER,
+HtmlSize INTEGER,
+Fk_Hosts_Id INTEGER NOT NULL FOREIGN KEY REFERENCES Hosts(Id)
+)
+go
+CREATE TABLE CssLinks
+(
+Id int IDENTITY(1,1) PRIMARY KEY,
+Css nvarchar(max),
+Fk_PageUrls_Id INTEGER NOT NULL FOREIGN KEY REFERENCES PageUrls(Id)
+)
+go
+CREATE TABLE ImgSources
+(
+Id int IDENTITY(1,1) PRIMARY KEY,
+Scr nvarchar(max) ,
+Fk_PageUrls_Id INTEGER NOT NULL FOREIGN KEY REFERENCES PageUrls(Id)
+)
+go
+CREATE TABLE InternalUrls
+(
+Id int IDENTITY(1,1) PRIMARY KEY,
+Url nvarchar(max) NOT NULL,
+Fk_PageUrls_Id INTEGER NOT NULL FOREIGN KEY REFERENCES PageUrls(Id)
+)
+go
+CREATE TABLE ExternalUrls
+(
+Id int IDENTITY(1,1) PRIMARY KEY,
+Url nvarchar(max) NOT NULL,
+Fk_PageUrls_Id INTEGER NOT NULL FOREIGN KEY REFERENCES PageUrls(Id)
+)
